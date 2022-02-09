@@ -18,7 +18,6 @@ import Config from "react-native-config";
 
 const App: () => Node = () => {
   
-
   return (
     <View
     style={{
