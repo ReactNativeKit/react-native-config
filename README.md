@@ -409,7 +409,7 @@ export default {
   
 ### ENV Production
 <div align="center">
-  <img src="screenshots/Production.png" width="250">
+  <img src="screenshots/production.png" width="250">
   </div>
 
 ## Meta
