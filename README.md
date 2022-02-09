@@ -16,7 +16,7 @@ GOOGLE_MAPS_API_KEY=abcdefgh
 Then access variables defined there from your app:
 
 ```js
-import Config from "react-native-config";
+import Config from 'react-native-config';
 
 Config.API_URL; // 'https://myapi.com'
 Config.GOOGLE_MAPS_API_KEY; // 'abcdefgh'
@@ -49,71 +49,73 @@ if cocoapods are used in the project then pod has to be installed as well:
 (cd ios; pod install)
 ```
 
- - Manual Link (iOS)
+- Manual Link (iOS)
 
-	1. In XCode, in the project navigator, right click `Libraries` ➜ `Add 		Files to [your project's name]`
-	2. Go to `node_modules` ➜ `react-native-config` and add 		`ReactNativeConfig.xcodeproj`
-	3. Expand the `ReactNativeConfig.xcodeproj` ➜ `Products` folder
-	4. In the project navigator, select your project. Add 		`libReactNativeConfig.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-	5. And go the Build Settings tab. Make sure All is toggled on (instead of Basic)
-	6. Look for Header Search Paths and add `$(SRCROOT)/../node_modules/react-native-config/ios/**` as `non-recursive`
+  1.  In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+  2.  Go to `node_modules` ➜ `react-native-config` and add `ReactNativeConfig.xcodeproj`
+  3.  Expand the `ReactNativeConfig.xcodeproj` ➜ `Products` folder
+  4.  In the project navigator, select your project. Add `libReactNativeConfig.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+  5.  And go the Build Settings tab. Make sure All is toggled on (instead of Basic)
+  6.  Look for Header Search Paths and add `$(SRCROOT)/../node_modules/react-native-config/ios/**` as `non-recursive`
 
+- Manual Link (Android)
 
- - Manual Link (Android) 
+  **android/settings.gradle**
 
-	**android/settings.gradle**
-	
-	```diff
-	+ include ':react-native-config'
-	+ project(':react-native-config').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-config/android')
-	```
-	**android/app/build.gradle**
-	
-	```diff
-	dependencies {
-		implementation "com.facebook.react:react-native:+"  // From node_modules
-	+	implementation project(':react-native-config')
-	}
-	```
-	**MainApplication.java**
-	
-	```diff
-	+ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-	
-	@Override
-	protected List<ReactPackage> getPackages() {
-		   return Arrays.asList(
-           		new MainReactPackage()
-	+      		new ReactNativeConfigPackage()
-	    );
-	}
-	```
+  ```diff
+  + include ':react-native-config'
+  + project(':react-native-config').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-config/android')
+  ```
 
- - Manual Link (Windows)
+  **android/app/build.gradle**
 
-	**windows/myapp.sln**
+  ```diff
+  dependencies {
+  	implementation "com.facebook.react:react-native:+"  // From node_modules
+  +	implementation project(':react-native-config')
+  }
+  ```
 
-	Add the `RNCConfig` project to your solution.
+  **MainApplication.java**
 
-	1. Open the solution in Visual Studio 2019
-	2. Right-click Solution icon in Solution Explorer > Add > Existing Project  
-	  - if using `react-native-windows@0.62` or later select `node_modules\react-native-config\windows\RNCConfig\RNCConfig.vcxproj`
-		- if using `react-native-windows@0.61` select `node_modules\react-native-config\windows\RNCConfig61\RNCConfig61.vcxproj`
+  ```diff
+  + import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 
-	**windows/myapp/myapp.vcxproj**
+  @Override
+  protected List<ReactPackage> getPackages() {
+  	   return Arrays.asList(
+          		new MainReactPackage()
+  +      		new ReactNativeConfigPackage()
+      );
+  }
+  ```
 
-	Add a reference to `RNCConfig` to your main application project. From Visual Studio 2019:
+- Manual Link (Windows)
 
-	1. Right-click main application project > Add > Reference...  
-	Check `RNCConfig` from Solution Projects.
+  **windows/myapp.sln**
 
-	**pch.h**
+  Add the `RNCConfig` project to your solution.
 
-	Add `#include "winrt/RNCConfig.h"`.
+  1.  Open the solution in Visual Studio 2019
+  2.  Right-click Solution icon in Solution Explorer > Add > Existing Project
 
-	**app.cpp**
+  - if using `react-native-windows@0.62` or later select `node_modules\react-native-config\windows\RNCConfig\RNCConfig.vcxproj`
+    - if using `react-native-windows@0.61` select `node_modules\react-native-config\windows\RNCConfig61\RNCConfig61.vcxproj`
 
-	Add `PackageProviders().Append(winrt::RNCConfig::ReactPackageProvider());` before `InitializeComponent();`.
+  **windows/myapp/myapp.vcxproj**
+
+  Add a reference to `RNCConfig` to your main application project. From Visual Studio 2019:
+
+  1.  Right-click main application project > Add > Reference...  
+      Check `RNCConfig` from Solution Projects.
+
+  **pch.h**
+
+  Add `#include "winrt/RNCConfig.h"`.
+
+  **app.cpp**
+
+  Add `PackageProviders().Append(winrt::RNCConfig::ReactPackageProvider());` before `InitializeComponent();`.
 
 ### Extra step for Android
 
@@ -191,6 +193,7 @@ NSDictionary *config = [ReactNativeConfig env];
 ### Windows
 
 You can access variables declared in `.env` from C++ in your App project:
+
 ```
 std::string api_key = ReactNativeConfig::API_KEY;
 ```
@@ -202,8 +205,8 @@ Similarly, you can access those values in other project by adding reference to t
 With one extra step environment values can be exposed to "Info.plist" and Build settings in the native project.
 
 1. click on the file tree and create new file of type XCConfig
-   ![img](./readme-pics/1.ios_new_file.png)
-   ![img](./readme-pics/2.ios_file_type.png)
+   ![img](images/1.ios_new_file.png)
+   ![img](images/2.ios_file_type.png)
 2. save it under `ios` folder as "Config.xcconfig" with the following content:
 
 ```
@@ -220,14 +223,14 @@ ios/tmp.xcconfig
 
 4. go to project settings
 5. apply config to your configurations
-   ![img](./readme-pics/3.ios_apply_config.png)
+   ![img](images/3.ios_apply_config.png)
 6. Go to _Edit scheme..._ -> _Build_ -> _Pre-actions_, click _+_ and select _New Run Script Action_. Paste below code which will generate "tmp.xcconfig" before each build exposing values to Build Settings and Info.plist. Make sure to select your target under _Provide build settings from_, so `$SRCROOT` environment variables is available to the script. (Note that this snippet has to be placed after "cp ... \${PROJECT_DIR}/../.env" if [approach explained below](#ios-multi-scheme) is used).
 
    ```
    "${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb" "${SRCROOT}/.." "${SRCROOT}/tmp.xcconfig"
    ```
 
-   ![img](./readme-pics/4.ios_pre_actions.png)
+   ![img](images/4.ios_pre_actions.png)
 
 7. You can now access your env variables in the Info.plist, for example `$(MY_ENV_VARIABLE)`. If you face issues accessing variables, please open a new issue and provide as much details as possible so above steps can be improved.
 
@@ -305,7 +308,7 @@ Then edit the newly created scheme to make it use a different env file. From the
   ```
   cp "${PROJECT_DIR}/../.env.staging" "${PROJECT_DIR}/../.env"  # replace .env.staging for your file
   ```
-Also ensure that "Provide build settings from", just above the script, has a value selected so that PROJECT_DIR is set.
+  Also ensure that "Provide build settings from", just above the script, has a value selected so that PROJECT_DIR is set.
 
 Alternatively, if you have separated build configurations, you may easily set the different envfiles per configuration by adding these lines into the end of Podfile:
 
@@ -363,11 +366,12 @@ If using Dexguard, the shrinking phase will remove resources it thinks are unuse
 
     -keepresources string/build_config_package
 
-### TypeError: _reactNativeConfig.default.getConstants is not a function
+### TypeError: \_reactNativeConfig.default.getConstants is not a function
 
 This error stems from `.env` file being malformed. Accepted formats are listed here https://regex101.com/r/cbm5Tp/1. Common causes are:
-  - Missing the .env file entirely
-  - Rogue space anywhere, example: in front of env variable: ` MY_ENV='foo'`
+
+- Missing the .env file entirely
+- Rogue space anywhere, example: in front of env variable: ` MY_ENV='foo'`
 
 ## Testing
 
