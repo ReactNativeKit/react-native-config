@@ -8,8 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "build-staging":"cp ./.env.staging ./.env && npx react-native run-android",
-    "build-production":"cp ./.env.production ./.env && npx react-native run-android",
+    "build-staging":"cp ./.env.staging ./.env.development && npx react-native run-android",
+    "build-production":"cp ./.env.production ./.env.development && npx react-native run-android",
     "release-staging":"cd android && ENVFILE=.env.staging ./gradlew assembleRelease",
     "release-prod":"cd android && ENVFILE=.env.production ./gradlew assembleRelease"
   },
