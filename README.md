@@ -395,6 +395,8 @@ export default {
 };
 ```
 
+## Screenshot
+
 ## Meta
 
-Created by Pedro Belo at [Lugg](https://lugg.com/).
+Created by Abhinav Anand.
